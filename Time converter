@@ -1,0 +1,361 @@
+#include <iostream>// In order to read or write to the standard input/output streams you need to include it
+#include <Windows.h> // You need this header to use Sleep()
+using namespace std;// A standard that allows the use of cout, cin, endl, etc
+
+
+//------Discalimer------
+// As the assigment requires diffrent input time selctions and diffrent output of time selction there are 2 menus.
+// Menu 1 is to select the input time units
+// Menu 2 is to selecr the ouput time units
+// After each calcyulation you will be asked to CONTINUE or QUIT 
+// The time converter will loop until you quit at any menu
+
+//-------extra stuff--------
+// sleep(600); - this function delays the line of code for example the menu showing up line by line. As shown
+
+
+char Firstchoice = ' ';// this is the charcter input for my first menu
+char Secondchoice = ' ';// this is the charcter input for my second menu
+char ContQui = ' ';// this is the charcter input for my continue menu
+
+bool MenuTwo = false;
+bool repeat = false;
+bool calculatorRunning;
+bool ccontinue;
+
+int input1 = 0;
+int input2 = 0; 
+int input3 = 0;
+
+int output1 = 0;
+int output2 = 0;
+int output3 = 0;
+
+float number1input = 0.0;
+float numberoutput = 0.0;
+
+int secondsmultiplyer = 1;
+int minutesmultiplyer = 60;
+int hoursmultiplyer = 60;
+
+
+void quitmenu()
+{
+    cout << "thanks for Playing" << endl;
+    calculatorRunning = false;
+    system("pause");
+
+}
+
+void BadInput()
+{
+    cout << "Bad selection - please enter [H][M][S] or [Q]" << endl;
+    system("pause");
+}
+
+void Cont()
+{
+    system("CLS");
+    cout << "---************---" << endl;
+    cout << "----* Continue *----" << endl;
+    cout << "-----********-----" << endl;
+    Sleep(600);
+    cout << "-Continue or Quit-" << endl;
+    cout << "******************" << endl;
+    cout << "[C] - Continue" << endl;
+    cout << "------------------" << endl;
+    cout << "[Q] - Quit" << endl;
+    cout << "******************" << endl;
+    Sleep(600);
+    cout << "Enter [C] to continue or [Q] to Quit: ";
+
+    cin >> ContQui;
+
+    switch (ContQui)
+    {
+    case 'C':
+    case 'c':
+        calculatorRunning = true;
+        break;
+    case 'Q':
+    case 'q':
+        quitmenu();
+        break;
+    default:
+        BadInput();
+        break;
+    }
+}
+
+
+
+void converter1()
+{
+    if (input1 && output1)
+    {
+        cout << number1input ;
+        cout << " second(s) is ";
+        numberoutput = (number1input / secondsmultiplyer);
+        cout << (int)numberoutput;
+        cout << " second(s)" << endl;
+        cout << "its going to be the same obviously" << endl;
+        system("pause");
+        Cont();
+        
+    }
+    else if (input1 && output2)
+    {
+        cout << number1input ;
+        cout << " second(s) is ";
+        numberoutput = (number1input / minutesmultiplyer);
+        cout << (int)numberoutput;
+        cout << " minute(s)" << endl;
+        system("pause");
+        Cont();
+    }
+    else if (input1 && output3)
+    {
+        cout << number1input;
+        cout << " second(s) is ";
+        numberoutput = (number1input / hoursmultiplyer);
+        numberoutput = (numberoutput / hoursmultiplyer);
+        cout << (int)numberoutput;
+        cout << " hours(s)" << endl;
+        system("pause");
+        Cont();
+    }
+    else
+    {
+    }
+}
+
+void converter2()
+{
+    if (input2 && output1)
+    {
+        cout << number1input;
+        cout << " minutes(s) is ";
+        numberoutput = (number1input * minutesmultiplyer);
+        cout << (int)numberoutput;
+        cout << " seonds(s)" << endl;
+        system("pause");
+        Cont();
+    }
+    else if (input2 && output2)
+    {
+        cout << number1input;
+        cout << " minutes(s) is ";
+        numberoutput = (number1input * secondsmultiplyer);
+        cout << (int)numberoutput;
+        cout << " minutes(s)" << endl;
+        cout << "its going to be the same obviously" << endl;
+        system("pause");
+        Cont();
+    }
+    else if (input2 && output3)
+    {
+        cout << number1input;
+        cout << " minutes(s) is ";
+        numberoutput = (number1input / hoursmultiplyer);
+        cout << (int)numberoutput;
+        cout << " hours(s)" << endl;
+        system("pause");
+        Cont();
+    }
+    else
+    {
+    }
+}
+
+void converter3()
+{
+    if (input3 && output1)
+    {
+        cout << number1input;
+        cout << " hours(s) is ";
+        numberoutput = (number1input * minutesmultiplyer);
+        numberoutput = (numberoutput * minutesmultiplyer);
+        cout << (int)numberoutput;
+        cout << " seonds(s)" << endl;
+        system("pause");
+        Cont();
+    }
+    else if (input3 && output2)
+    {
+        cout << number1input;
+        cout << " hours(s) is ";
+        numberoutput = (number1input * minutesmultiplyer);
+        cout << (int)numberoutput;
+        cout << " minutes(s)" << endl;
+        system("pause");
+        Cont();
+    }
+    else if (input3 && output3)
+    {
+        cout << number1input;
+        cout << " hours(s) is ";
+        numberoutput = (number1input * secondsmultiplyer);
+        cout << (int)numberoutput;
+        cout << " hours(s)" << endl;
+        cout << "its going to be the same obviously" << endl;
+        system("pause");
+        Cont();
+    }
+    else
+    {
+    }
+}
+
+void numberinput()
+{
+    if (input1 == 1)
+    {
+        cout << "Convertion: " << endl;
+        cout << Firstchoice;
+        cout << " ---> ";
+        cout << Secondchoice << endl;
+        cout << "Enter Seconds: ";
+        cin >> number1input;
+        converter1();
+        system("pause");
+    }
+    else if (input2 == 1)
+    {
+        cout << "Convertion: " << endl;
+        cout << Firstchoice;
+        cout << " ---> ";
+        cout << Secondchoice << endl;
+        cout << "Enter Minutes: ";
+        cin >> number1input;
+        converter2();
+        system("pause");
+    }
+    else if (input3 == 1)
+    {
+        cout << "Convertion: " << endl;
+        cout << Firstchoice;
+        cout << " ---> ";
+        cout << Secondchoice << endl;
+        cout << "Enter Hours: ";
+        cin >> number1input;
+        converter3();
+        system("pause");
+    }
+    else
+    {
+    }
+}
+
+void menu2()
+{
+    system("CLS");
+    cout << "---************---" << endl;
+    cout << "----* Menu 2 *----" << endl;
+    cout << "-----********-----" << endl;
+    Sleep(600);
+    cout << "Select Output Time Unit" << endl;
+    cout << "******************" << endl;
+    cout << "[H] - Hours" << endl;
+    cout << "[M] - Minutes" << endl;
+    cout << "[S] - Seconds" << endl;
+    cout << "------------------" << endl;
+    cout << "[Q] - Quit" << endl;
+    cout << "******************" << endl;
+    Sleep(600);
+    cout << "Enter [H], [M], [S] to convert or [Q] to Quit: ";
+
+    cin >> Secondchoice;
+
+    switch (Secondchoice)
+    {
+    case 'H':
+    case 'h':
+        output3 = 1;
+        numberinput();
+        break;
+    case 'M':
+    case 'm':
+        output2 = 1;
+        numberinput();
+        break;
+    case 'S':
+    case 's':
+        output1 = 1;
+        numberinput();
+        break;
+    case 'Q':
+    case 'q':
+        quitmenu();
+        break;
+    default:
+        BadInput();
+        break;
+    }
+}
+
+void menu1()
+{
+    system("CLS");
+    cout << "-----********-----" << endl;
+    cout << "----*  Menu  *----" << endl;
+    cout << "---************---" << endl;
+    Sleep(600);
+    cout << "Select Input Time Unit" << endl;
+    cout << "******************" << endl;
+    cout << "[H] - Hours" << endl;
+    cout << "[M] - Minutes" << endl;
+    cout << "[S] - Seconds" << endl;
+    cout << "------------------" << endl;
+    cout << "[Q] - Quit" << endl;
+    cout << "******************" << endl;
+    Sleep(600);
+    cout << "Enter [H], [M], [S] to convert or [Q] to Quit: ";
+
+    cin >> Firstchoice;
+
+    switch (Firstchoice)
+    {
+    case 'H':
+    case 'h':
+        input3 = 1;
+        MenuTwo = true;
+        break;
+    case 'M':
+    case 'm':
+        input2 = 1;
+        MenuTwo = true;
+        break;
+    case 'S':
+    case 's':
+        input1 = 1;
+        MenuTwo = true;
+        break;
+    case 'Q':
+    case 'q':
+        quitmenu();
+        break;
+    default:
+        BadInput();
+        break;
+    }
+    if (MenuTwo == true)
+    {
+        menu2();
+    }
+
+    else
+    {
+    }
+}
+
+
+int main()
+{
+    calculatorRunning = true;
+    repeat = true;
+    
+    while (calculatorRunning) {
+        menu1();
+    }
+    return 0;
+}
